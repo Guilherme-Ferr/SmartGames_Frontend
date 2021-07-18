@@ -12,15 +12,19 @@ import {
   GameValueBox,
   Header,
   InfoGame,
+  InfoPlatforms,
   Informations,
+  Logo,
   MapLocation,
   ModalInfo,
   StoreMapLocation,
   Stores,
   Values,
 } from "./styles";
-import Overwatch from "../../assets/overwatch.jpg";
+import QRCode from "react-qr-code";
+import LogoSmart from "../../assets/logo.png";
 import Aranha from "../../assets/aranha.png";
+import MapsImage from "../../assets/maps.png";
 import { useState } from "react";
 import Modal from "../../components/modalGame";
 
@@ -34,7 +38,7 @@ function Home() {
           <InfoGame>
             <ModalInfo>
               <GameFullImage>
-                <img src={Overwatch} alt="Imagem Jogo"></img>
+                <img src={Aranha} alt="Imagem Jogo"></img>
               </GameFullImage>
               <FullInformations>
                 <h1>Overwatch</h1>
@@ -53,9 +57,13 @@ function Home() {
                   forçado a lidar com seus problemas pessoais como Peter Parker.
                 </p>
                 <GameValue>
+                  <h3>PC</h3>
                   <h3>PS4</h3>
-                  <h3>Xbox</h3>
+                  <h3>Switch</h3>
+                  <h3>Xbox One</h3>
+                  <QRCode value="10" size={100}></QRCode>
                 </GameValue>
+
                 <GameValue>
                   <GameValueBox>
                     <p>R$ 250,00</p>
@@ -70,7 +78,21 @@ function Home() {
             <Stores>
               <StoreMapLocation>
                 <h3>Loja Tamboré</h3>
-                <MapLocation></MapLocation>
+                <MapLocation>
+                  <img src={MapsImage} alt="Imagem Jogo"></img>
+                </MapLocation>
+              </StoreMapLocation>
+              <StoreMapLocation>
+                <h3>Loja Tamboré</h3>
+                <MapLocation>
+                  <img src={MapsImage} alt="Imagem Jogo"></img>
+                </MapLocation>
+              </StoreMapLocation>
+              <StoreMapLocation>
+                <h3>Loja Tamboré</h3>
+                <MapLocation>
+                  <img src={MapsImage} alt="Imagem Jogo"></img>
+                </MapLocation>
               </StoreMapLocation>
             </Stores>
           </InfoGame>
@@ -78,6 +100,7 @@ function Home() {
       )}
       <Container>
         <Header>
+          <Logo src={LogoSmart} />
           <h1>Smart Games Ltda.</h1>
         </Header>
         <Content>
@@ -88,7 +111,11 @@ function Home() {
               </GameImage>
               <Informations>
                 <h1>Overwatch</h1>
-                <h3>Plataforma</h3>
+                <InfoPlatforms>
+                  <h3>Plataforma</h3>
+                  <h3>Plataforma</h3>
+                  <h3>Plataforma</h3>
+                </InfoPlatforms>
                 <p>
                   Spider-Man é um jogo eletrônico de ação-aventura desenvolvido
                   pela Insomniac Games publicado pela Sony Interactive

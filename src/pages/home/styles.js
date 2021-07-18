@@ -29,6 +29,14 @@ export const Header = styled.header`
   box-shadow: 0px 1px 5px var(--darkGray);
 `;
 
+export const Logo = styled.img`
+  width: 60px;
+  height: inherit;
+  margin-right: 20px;
+  border-radius: 30px;
+  border: 1px solid black;
+`;
+
 export const Content = styled.div`
   width: 1280px;
   height: 100%;
@@ -77,12 +85,6 @@ export const Informations = styled.div`
 
   > h1 {
     font-size: 38px;
-    font-weight: bold;
-    margin-bottom: 18px;
-  }
-
-  > h3 {
-    font-size: 18px;
     font-weight: bold;
     margin-bottom: 18px;
   }
@@ -194,7 +196,6 @@ export const FullInformations = styled.div`
 export const GameValue = styled.div`
   width: 100%;
   height: 100px;
-  padding: 10px;
   align-items: center;
   display: flex;
   justify-content: center;
@@ -211,8 +212,21 @@ export const GameValue = styled.div`
   }
 `;
 
+export const InfoPlatforms = styled.div`
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  display: flex;
+
+  > h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 14px;
+  }
+`;
+
 export const GameValueBox = styled.div`
-  width: 200px;
+  width: 150px;
   height: 50px;
   padding: 10px;
   margin-right: 20px;
@@ -224,6 +238,12 @@ export const GameValueBox = styled.div`
   border-radius: 16px;
   border-color: black;
 
+  > h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 14px;
+  }
+
   > p {
     font-size: 26px;
     padding: 10px 5px;
@@ -231,7 +251,7 @@ export const GameValueBox = styled.div`
 `;
 
 export const ButtonFinishBuy = styled.button`
-  width: 200px;
+  width: 180px;
   height: 50px;
   padding: 10px;
   align-items: center;
@@ -259,7 +279,7 @@ export const Stores = styled.div`
 
 export const StoreMapLocation = styled.div`
   width: 33%;
-  height: 90%;
+  height: 80%;
   margin-top: 20px;
   margin-left: 4px;
   /* background-color: var(--darkGray); */
@@ -275,5 +295,10 @@ export const MapLocation = styled.div`
   width: 100%;
   height: 85%;
   display: flex;
-  /* background-color: var(--light); */
+  /* background-color: var(--secondary); */
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;

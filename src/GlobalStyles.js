@@ -37,16 +37,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    padding: 10px;
-
     font-weight: bold;
     color: var(--light);
-    background-color: var(--darkGray);
-    border: 1px solid var(--light);
-    border-radius: 4px;
-
     cursor: pointer;
-
     transition: .2s ease-in-out;
 
     :hover{
@@ -54,7 +47,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     :active{
-      transform: scale(0.95);
+      transform: scale(0.80);
     }
 
     :disabled{
@@ -62,30 +55,6 @@ export const GlobalStyles = createGlobalStyle`
       border: 1px solid var(--darkGray);
       color: var(--darkGray);
     }
-  }
-
-  a {
-    color: var(--light);
-
-    transition: .2s;
-
-    :hover{
-      color: var(--primary);
-    }
-
-    :active {
-      transform: scale(0.95);
-    }
-  }
-
-  textarea, select {
-    font-size: 16px;
-    padding: 5px;
-    border-radius: 4px;
-
-    resize: none;
-
-    font-family: sans-serif;
   }
 
 `;

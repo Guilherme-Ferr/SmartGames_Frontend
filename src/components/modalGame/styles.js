@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const Overlay = styled.div`
   position: absolute;
@@ -11,7 +11,21 @@ export const Overlay = styled.div`
   align-items: center;
 `;
 
+const loginAnimation = keyframes`
+  0%{
+    bottom: 1000px;
+    opacity: 0;
+    transform: scale(0.01) rotate(0deg);
+  }
+  100%{
+    top: 0px;
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+`;
+
 export const ModalContainer = styled.section`
+  animation: ${loginAnimation} 0.7s;
   min-width: 250px;
   min-height: 250px;
   max-height: calc(100vh - 20px);
@@ -41,5 +55,18 @@ export const ModalContainer = styled.section`
     font-size: 24px;
     text-align: center;
     margin: 0px 20px;
+  }
+`;
+
+export const Span = styled.span`
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  :hover {
+    color: var(--primary);
   }
 `;
