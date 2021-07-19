@@ -21,54 +21,63 @@ import {
   Stores,
   Values,
 } from "./styles";
+import { api } from "../../services/api";
+import { useEffect, useState } from "react";
+import Alert from "../../components/Alert";
 import QRCode from "react-qr-code";
 import LogoSmart from "../../assets/logo.png";
-import Aranha from "../../assets/aranha.png";
-import MapsImage from "../../assets/maps.png";
-import { useState } from "react";
 import Modal from "../../components/modalGame";
 
 function Home() {
   const [modal, setModal] = useState(false);
 
+  const [games, setGames] = useState([]);
+
+  const [oneGame, setOneGame] = useState([]);
+
+  const [message, setMessage] = useState(undefined);
+
+  const loadGames = async () => {
+    const response = await api.get("/games");
+
+    setGames(response.data);
+  };
+
+  useEffect(() => {
+    loadGames();
+  }, []);
+
+  const handleOpenmodal = async (e) => {
+    setModal(true);
+    setOneGame(e);
+  };
+
   return (
     <>
+      <Alert message={message} type="error" handleClose={setMessage} />
       {modal && (
         <Modal handleClose={() => setModal(false)} title="Comprar Jogo">
           <InfoGame>
             <ModalInfo>
               <GameFullImage>
-                <img src={Aranha} alt="Imagem Jogo"></img>
+                <img src={oneGame.image} alt="Imagem Game"></img>
               </GameFullImage>
               <FullInformations>
-                <h1>Overwatch</h1>
-                <p>
-                  Spider-Man é um jogo eletrônico de ação-aventura desenvolvido
-                  pela Insomniac Games publicado pela Sony Interactive
-                  Entertainment. É baseado nos personagens, mitologia e
-                  adaptações em outras mídias do super-herói de histórias em
-                  quadrinhos Homem-Aranha da Marvel Comics, tendo sido lançado
-                  exclusivamente para PlayStation 4 em 7 de setembro de 2018. Na
-                  história, o criminoso super-humano Senhor Negativo organiza um
-                  plano para se vingar do prefeito Norman Osborn e assumir o
-                  controle do submundo criminal de Nova Iorque. O Homem-Aranha
-                  precisa proteger a cidade assim que o Senhor Negativo ameaça
-                  lançar um vírus mortal por toda a área, ao mesmo tempo que é
-                  forçado a lidar com seus problemas pessoais como Peter Parker.
-                </p>
+                <h1>{oneGame.name}</h1>
+                <p>{oneGame.description}</p>
                 <GameValue>
-                  <h3>PC</h3>
-                  <h3>PS4</h3>
-                  <h3>Switch</h3>
-                  <h3>Xbox One</h3>
-                  <QRCode value="10" size={100}></QRCode>
+                  {oneGame.__platforms__.map((platform) => (
+                    <h3>{platform.name}</h3>
+                  ))}
+                  <QRCode value={`${oneGame.id_game}`} size={100}></QRCode>
                 </GameValue>
-
                 <GameValue>
                   <GameValueBox>
-                    <p>R$ 250,00</p>
+                    <p>R${oneGame.value}</p>
                   </GameValueBox>
-                  <ButtonFinishBuy>
+                  <ButtonFinishBuy
+                    onClick={() => alert("Compra Efetuada Com Sucesso")}
+                  >
                     <p>COMPRAR</p>
                   </ButtonFinishBuy>
                 </GameValue>
@@ -76,24 +85,14 @@ function Home() {
             </ModalInfo>
             <h1>Lojas Disponiveis Para Compra:</h1>
             <Stores>
-              <StoreMapLocation>
-                <h3>Loja Tamboré</h3>
-                <MapLocation>
-                  <img src={MapsImage} alt="Imagem Jogo"></img>
-                </MapLocation>
-              </StoreMapLocation>
-              <StoreMapLocation>
-                <h3>Loja Tamboré</h3>
-                <MapLocation>
-                  <img src={MapsImage} alt="Imagem Jogo"></img>
-                </MapLocation>
-              </StoreMapLocation>
-              <StoreMapLocation>
-                <h3>Loja Tamboré</h3>
-                <MapLocation>
-                  <img src={MapsImage} alt="Imagem Jogo"></img>
-                </MapLocation>
-              </StoreMapLocation>
+              {oneGame.__stores__.map((store) => (
+                <StoreMapLocation>
+                  <h3>{store.name}</h3>
+                  <MapLocation>
+                    <img src={store.longitude} alt="Imagem Game"></img>
+                  </MapLocation>
+                </StoreMapLocation>
+              ))}
             </Stores>
           </InfoGame>
         </Modal>
@@ -105,39 +104,28 @@ function Home() {
         </Header>
         <Content>
           <FeedContainer>
-            <GameCard>
-              <GameImage>
-                <img src={Aranha} alt="Imagem Jogo"></img>
-              </GameImage>
-              <Informations>
-                <h1>Overwatch</h1>
-                <InfoPlatforms>
-                  <h3>Plataforma</h3>
-                  <h3>Plataforma</h3>
-                  <h3>Plataforma</h3>
-                </InfoPlatforms>
-                <p>
-                  Spider-Man é um jogo eletrônico de ação-aventura desenvolvido
-                  pela Insomniac Games publicado pela Sony Interactive
-                  Entertainment. É baseado nos personagens, mitologia e
-                  adaptações em outras mídias do super-herói de histórias em
-                  quadrinhos Homem-Aranha da Marvel Comics, tendo sido lançado
-                  exclusivamente para PlayStation 4 em 7 de setembro de 2018. Na
-                  história, o criminoso super-humano Senhor Negativo organiza um
-                  plano para se vingar do prefeito Norman Osborn e assumir o
-                  controle do submundo criminal de Nova Iorque. O Homem-Aranha
-                  precisa proteger a cidade assim que o Senhor Negativo ameaça
-                  lançar um vírus mortal por toda a área, ao mesmo tempo que é
-                  forçado a lidar com seus problemas pessoais como Peter Parker.
-                </p>
-              </Informations>
-              <Values>
-                <h1>R$ 250,00</h1>
-                <ButtonBuy>
-                  <p onClick={() => setModal(true)}>COMPRAR</p>
-                </ButtonBuy>
-              </Values>
-            </GameCard>
+            {games.map((game) => (
+              <GameCard key={game.id_game}>
+                <GameImage>
+                  <img src={game.image} alt="Imagem Game"></img>
+                </GameImage>
+                <Informations>
+                  <h1>{game.name}</h1>
+                  <InfoPlatforms>
+                    {game.__platforms__.map((platform) => (
+                      <h3>{platform.name}</h3>
+                    ))}
+                  </InfoPlatforms>
+                  <p>{game.description}</p>
+                </Informations>
+                <Values>
+                  <h1>R${game.value}</h1>
+                  <ButtonBuy>
+                    <p onClick={() => handleOpenmodal(game)}>COMPRAR</p>
+                  </ButtonBuy>
+                </Values>
+              </GameCard>
+            ))}
           </FeedContainer>
         </Content>
       </Container>

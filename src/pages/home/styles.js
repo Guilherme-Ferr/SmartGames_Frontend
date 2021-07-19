@@ -135,16 +135,14 @@ export const ButtonBuy = styled.button`
 
 export const InfoGame = styled.div`
   width: 1200px;
-  height: 900px;
+  height: 1000px;
   margin: 20px;
-  background-color: var(--primary);
 `;
 
 export const ModalInfo = styled.div`
   width: 100%;
   height: 70%;
   margin-bottom: 20px;
-  background-color: var(--light);
   word-break: break-all;
   overflow-y: auto;
   display: flex;
@@ -270,11 +268,10 @@ export const ButtonFinishBuy = styled.button`
 
 export const Stores = styled.div`
   width: 100%;
-  height: 30%;
+  height: 50%;
   display: flex;
   text-align: center;
   flex-direction: row;
-  /* background-color: var(--dark); */
 `;
 
 export const StoreMapLocation = styled.div`
@@ -293,7 +290,7 @@ export const StoreMapLocation = styled.div`
 
 export const MapLocation = styled.div`
   width: 100%;
-  height: 85%;
+  height: 100%;
   display: flex;
   /* background-color: var(--secondary); */
 
