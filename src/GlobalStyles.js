@@ -43,7 +43,7 @@ export const GlobalStyles = createGlobalStyle`
     transition: .2s ease-in-out;
 
     :hover{
-      background-color: var(--primary);
+      background-color: var(--darkGray);
     }
 
     :active{

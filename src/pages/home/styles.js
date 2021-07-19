@@ -119,7 +119,7 @@ export const ButtonBuy = styled.button`
   height: 30%;
   padding: 10px;
   margin-top: 8px;
-  background-color: #00b51e;
+  background-color: #13203b;
   border-radius: 16px;
   align-items: center;
   display: flex;

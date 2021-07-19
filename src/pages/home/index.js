@@ -100,7 +100,7 @@ function Home() {
       <Container>
         <Header>
           <Logo src={LogoSmart} />
-          <h1>Smart Games Ltda.</h1>
+          <h1>Smart Games</h1>
         </Header>
         <Content>
           <FeedContainer>
@@ -121,7 +121,7 @@ function Home() {
                 <Values>
                   <h1>R${game.value}</h1>
                   <ButtonBuy>
-                    <p onClick={() => handleOpenmodal(game)}>COMPRAR</p>
+                    <p onClick={() => handleOpenmodal(game)}>DETALHES</p>
                   </ButtonBuy>
                 </Values>
               </GameCard>
