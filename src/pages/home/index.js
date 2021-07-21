@@ -21,8 +21,9 @@ import {
   Stores,
   Values,
 } from "./styles";
+import GoogleMapReact from "google-map-react";
 import { api } from "../../services/api";
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Alert from "../../components/Alert";
 import QRCode from "react-qr-code";
 import LogoSmart from "../../assets/logo.png";
@@ -73,7 +74,7 @@ function Home() {
                 </GameValue>
                 <GameValue>
                   <GameValueBox>
-                    <p>R${oneGame.value}</p>
+                    <p>R${oneGame.value.toFixed(2)}</p>
                   </GameValueBox>
                   <ButtonFinishBuy
                     onClick={() => alert("Compra Efetuada Com Sucesso")}
@@ -88,9 +89,18 @@ function Home() {
               {oneGame.__stores__.map((store) => (
                 <StoreMapLocation>
                   <h3>{store.name}</h3>
-                  <MapLocation>
-                    <img src={store.longitude} alt="Imagem Game"></img>
-                  </MapLocation>
+                  <GoogleMapReact
+                    bootstrapURLKeys={{
+                      key: "AIzaSyCHLMP5nppR6oNvG_3Fk6dMJ1HLrRuzZI4",
+                    }}
+                    defaultCenter={{
+                      lat: store.latitude,
+                      lng: store.longitude,
+                    }}
+                    defaultZoom={16}
+                  >
+                    <MapLocation lat={store.latitude} lng={store.longitude} />
+                  </GoogleMapReact>
                 </StoreMapLocation>
               ))}
             </Stores>
@@ -119,7 +129,7 @@ function Home() {
                   <p>{game.description}</p>
                 </Informations>
                 <Values>
-                  <h1>R${game.value}</h1>
+                  <h1>R${game.value.toFixed(2)}</h1>
                   <ButtonBuy>
                     <p onClick={() => handleOpenmodal(game)}>DETALHES</p>
                   </ButtonBuy>
