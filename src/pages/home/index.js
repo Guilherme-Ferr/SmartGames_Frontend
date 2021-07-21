@@ -91,7 +91,7 @@ function Home() {
                   <h3>{store.name}</h3>
                   <GoogleMapReact
                     bootstrapURLKeys={{
-                      key: "AIzaSyCHLMP5nppR6oNvG_3Fk6dMJ1HLrRuzZI4",
+                      key: process.env.GOOGLE_MAPS_KEY,
                     }}
                     defaultCenter={{
                       lat: store.latitude,
