@@ -24,7 +24,6 @@ import {
 import GoogleMapReact from "google-map-react";
 import { api } from "../../services/api";
 import { React, useEffect, useState } from "react";
-import Alert from "../../components/Alert";
 import QRCode from "react-qr-code";
 import LogoSmart from "../../assets/logo.png";
 import Modal from "../../components/modalGame";
@@ -35,8 +34,6 @@ function Home() {
   const [games, setGames] = useState([]);
 
   const [oneGame, setOneGame] = useState([]);
-
-  const [message, setMessage] = useState(undefined);
 
   const loadGames = async () => {
     const response = await api.get("/games");
@@ -55,7 +52,6 @@ function Home() {
 
   return (
     <>
-      <Alert message={message} type="error" handleClose={setMessage} />
       {modal && (
         <Modal handleClose={() => setModal(false)} title="Comprar Jogo">
           <InfoGame>
@@ -107,6 +103,7 @@ function Home() {
           </InfoGame>
         </Modal>
       )}
+
       <Container>
         <Header>
           <Logo src={LogoSmart} />
